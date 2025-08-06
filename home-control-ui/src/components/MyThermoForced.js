@@ -1,0 +1,35 @@
+import React from 'react';
+
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+
+const MyThermoForced = ({ forced, setForced }) => {
+
+	const changeForced = (event) => {
+		const newForced = event.target.value;
+		setForced(newForced);
+	}
+
+	return (
+		<Grid container spacing={2}>
+			<Grid size={2}>
+				<Stack mt={2} spacing={2}>
+					<TextField
+						id="forced"
+						value={forced}
+						onChange={changeForced}
+						label="Température en mode forcé"
+						variant="outlined"
+						InputProps={{
+							endAdornment: <InputAdornment position="end">°C</InputAdornment>
+						}}/>
+				</Stack>
+			</Grid>
+			<Grid size={10} />
+		</Grid>
+	)
+}
+
+export default MyThermoForced
