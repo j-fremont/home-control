@@ -46,8 +46,6 @@ void setup() {
   Serial.println("");
 
   timeClient.begin();
-
-  delay(5000);
 }
 
 void loop() {
@@ -65,6 +63,7 @@ void loop() {
   Serial.print(timeClient.getMinutes());
   Serial.print(":");
   Serial.println(timeClient.getSeconds());
+  Serial.println(timeClient.getEpochTime());
   
   delay(1000);
 }
