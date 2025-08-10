@@ -5,7 +5,7 @@ services:
     image: arm32v7/influxdb:latest
     restart: always
     networks:
-      - linky
+      - control-net
     ports:
       - '8083:8083'
       - '8086:8086'
@@ -17,16 +17,42 @@ services:
     image: grafana/grafana
     restart: always
     networks:
-      - linky
+      - control-net
     ports:
       - '3005:3000'
+    depends_on:
+      - rpi-influxdb
     environment:
       - GF_INSTALL_PLUGINS=grafana-clock-panel
     volumes:
       - grafana-storage:/var/lib/grafana
+  home-server:
+    image: home-control-server:latest
+    restart: always
+    networks:
+      - control-net
+    ports:
+      - '9001:9000'
+    depends_on:
+      - rpi-influxdb
+    environment:
+      - NODEJS_HOST=192.168.1.10
+      - NODEMCU_HOST=192.168.1.11
+  home-ui:
+    image: home-control-ui:latest
+    restart: always
+    networks:
+      - control-net
+    ports:
+      - '3001:3000'
+    depends_on:
+      - home-server
+    environment:
+      - NODEJS_HOST=192.168.1.10
+      - NODEJS_PORT=9001
 
 volumes:
   grafana-storage:
 
 networks:
-  linky:
+  control-net:
