@@ -9,18 +9,50 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const MyThermoSlot = ({ slot, removeSlot }) => {
+const MyThermoSlot = ({ slot, updateSlot, removeSlot }) => {
 
 	const changeValue = (event) => {
-
+		const regex = /^[0-9]+$/i;
+		const newValue = event.target.value;
+		if (regex.test(newValue) || newValue==="") {
+			updateSlot({
+				...slot,
+				value: newValue
+			});
+		}
 	}
 
-	const changeStart = (event) => {
+	const changeMonday = () => changeDay(0);
+	const changeTuesday = () => changeDay(1);
+	const changeWenesday = () => changeDay(2);
+	const changeThursday = () => changeDay(3);
+	const changeFriday = () => changeDay(4);
+	const changeSaturday = () => changeDay(5);
+	const changeSunday = () => changeDay(6);
 
+	const changeStart = (event) => {
+		const newStart = event.target.value;
+		updateSlot({
+			...slot,
+			start: newStart
+		});
 	}
 
 	const changeEnd = (event) => {
+		const newEnd = event.target.value;
+		updateSlot({
+			...slot,
+			end: newEnd
+		});
+	}
 
+	const changeDay = (index) => {
+		const newDays = [...slot.days];
+		newDays[index] = !slot.days[index];
+		updateSlot({
+			...slot,
+			days: newDays
+		});
 	}
 
 	return (
@@ -35,13 +67,13 @@ const MyThermoSlot = ({ slot, removeSlot }) => {
 					endAdornment: <InputAdornment position="end">°C</InputAdornment>
 				}}/>
 			<FormGroup>
-				<FormControlLabel control={<Checkbox checked={slot.days[0]} />} label="Lundi" />
-				<FormControlLabel control={<Checkbox checked={slot.days[1]} />} label="Mardi" />
-				<FormControlLabel control={<Checkbox checked={slot.days[2]} />} label="Mercredi" />
-				<FormControlLabel control={<Checkbox checked={slot.days[3]} />} label="Jeudi" />
-				<FormControlLabel control={<Checkbox checked={slot.days[4]} />} label="Vendredi" />
-				<FormControlLabel control={<Checkbox checked={slot.days[5]} />} label="Samedi" />
-				<FormControlLabel control={<Checkbox checked={slot.days[6]} />} label="Dimanche" />
+				<FormControlLabel control={<Checkbox checked={slot.days[0]} onChange={changeMonday} />} label="Lundi" />
+				<FormControlLabel control={<Checkbox checked={slot.days[1]} onChange={changeTuesday} />} label="Mardi" />
+				<FormControlLabel control={<Checkbox checked={slot.days[2]} onChange={changeWenesday} />} label="Mercredi" />
+				<FormControlLabel control={<Checkbox checked={slot.days[3]} onChange={changeThursday} />} label="Jeudi" />
+				<FormControlLabel control={<Checkbox checked={slot.days[4]} onChange={changeFriday} />} label="Vendredi" />
+				<FormControlLabel control={<Checkbox checked={slot.days[5]} onChange={changeSaturday} />} label="Samedi" />
+				<FormControlLabel control={<Checkbox checked={slot.days[6]} onChange={changeSunday} />} label="Dimanche" />
 			</FormGroup>
 			<Grid container spacing={2}>
 				<Grid size={6}>

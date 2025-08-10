@@ -7,6 +7,11 @@ const control = (state = [], action) => {
 				...state,
 				page: action.page
 			}
+		case 'SET_MESSAGE':
+			return {
+				...state,
+				message: action.message
+			}
 		default:
 			return state
 	}

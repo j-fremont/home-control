@@ -4,8 +4,6 @@ import Grid from '@mui/material/Grid';
 
 import MyAppBar from '../containers/MyAppBar'
 
-import store from '../store';
-
 const MyApp = ({ container }) => {
 
 	const initialize = () => {

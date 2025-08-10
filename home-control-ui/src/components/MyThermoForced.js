@@ -8,8 +8,16 @@ import TextField from '@mui/material/TextField';
 const MyThermoForced = ({ forced, setForced }) => {
 
 	const changeForced = (event) => {
+		const regex = /^[0-9]+$/i;
 		const newForced = event.target.value;
-		setForced(newForced);
+
+		console.log(newForced)
+		console.log(regex.test(newForced))
+		console.log(newForced==="")
+
+		if (regex.test(newForced) || newForced==="") {
+			setForced(newForced);
+		}
 	}
 
 	return (

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { removeSlot } from '../actions'
+import { updateSlot, removeSlot } from '../actions'
 import MyThermoSlot from '../components/MyThermoSlot'
 
 const mapStateToProps = state => ({
@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+	updateSlot: slot => dispatch(updateSlot(slot)),
 	removeSlot: id => dispatch(removeSlot(id))
 })
 

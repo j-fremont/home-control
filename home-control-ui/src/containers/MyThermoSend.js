@@ -1,13 +1,15 @@
 import { connect } from 'react-redux'
-import { setMode } from '../actions'
+import { setMode, setMessage } from '../actions'
 import MyThermoSend from '../components/MyThermoSend'
 
 const mapStateToProps = state => ({
-	mode: state.thermo.mode
+	thermo: state.thermo,
+	message: state.control.message
 })
 
 const mapDispatchToProps = dispatch => ({
-	setMode: mode => dispatch(setMode(mode))
+	setMode: mode => dispatch(setMode(mode)),
+	setMessage: message => dispatch(setMessage(message)),
 })
 
 export default connect(

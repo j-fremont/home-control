@@ -1,3 +1,4 @@
+
 var config = module.exports = {};
 
 config.nodemcu = {
@@ -10,4 +11,3 @@ config.server = {
   port: '3000'
 };
 
-config.maxSlots = 4;

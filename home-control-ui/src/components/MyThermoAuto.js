@@ -11,8 +11,11 @@ import { v4 as uuidv4 } from 'uuid';
 const MyThermoAuto = ({ normal, setNormal, addSlot }) => {
 
 	const changeNormal = (event) => {
+		const regex = /^[0-9]+$/i;
 		const newNormal = event.target.value;
-		setNormal(newNormal);
+		if (regex.test(newNormal) || newNormal==="") {
+			setNormal(newNormal);
+		}
 	}
 
 	return (

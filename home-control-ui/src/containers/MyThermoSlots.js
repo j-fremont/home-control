@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { setForced } from '../actions'
 import MyThermoSlots from '../components/MyThermoSlots'
 
 const mapStateToProps = state => ({
@@ -7,8 +6,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
-
 
 })
 

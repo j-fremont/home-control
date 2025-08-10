@@ -6,14 +6,57 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 
 import { ThermoModeEnum } from '../actions'
 
-const MyThermoSend = ({ modes, mode, setMode }) => {
+import axios from "axios";
+
+const config = require('../config');
+
+const MyThermoSend = ({ thermo, message, setMode, setMessage }) => {
 
 	const changeMode = (event) => {
 		const newMode = event.target.value;
 		setMode(newMode);
+	}
+
+	const send = () => {
+
+		if (!check()) {
+
+			setMessage({
+				severity: 'error',
+				text: 'Erreur dans le format des heures.'
+			});
+
+		} else {
+
+			axios({
+				method: 'post',
+				url: 'http://' + config.server.host + ':' + config.server.port + '/thermo',
+				headers: {
+					'Content-type': 'application/json'
+				},
+				data: thermo
+			})
+			.then((response) => {
+				console.log(response.data);
+				setMessage({
+					severity: 'success',
+					text: 'Message envoyé !'
+				});
+			});
+		}
+	}
+
+	const check = () => {
+		const regex = /^[0-9][0-9]:[0-9][0-9]$/i;
+		return thermo.slots.every(s => regex.test(s.start) && regex.test(s.end));
+	}
+
+	const closeMessage = () => {
+		setMessage(undefined);
 	}
 
 	return (
@@ -24,14 +67,17 @@ const MyThermoSend = ({ modes, mode, setMode }) => {
 					labelId="mode-simple-select-label"
 					id="mode-simple-select"
 					label="Commune"
-					value={mode}
+					value={thermo.mode}
 					onChange={changeMode}>
 					{Object.values(ThermoModeEnum).map(m => (
 						<MenuItem key={m} value={m}>{m}</MenuItem>
 					))}
 				</Select>
 			</FormControl>
-			<Button variant="outlined">Envoyer</Button>
+			<Button variant="outlined" onClick={send}>Envoyer</Button>
+			{message &&
+				<Alert severity={message.severity} onClose={closeMessage}>{message.text}</Alert>
+			}
 		</Stack>
 	)
 }

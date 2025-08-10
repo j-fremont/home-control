@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Container from '@mui/material/Container';
-
 const MyContainerThermoSetup = ({ container }) => {
 
 	return (

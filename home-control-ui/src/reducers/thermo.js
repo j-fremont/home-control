@@ -27,6 +27,11 @@ const thermo = (state = [], action) => {
 			} else {
 				return state;
 			}
+		case 'UPDATE_SLOT':
+			return {
+				...state,
+				slots: state.slots.map(s => s.id===action.slot.id ? action.slot : s)
+			}
 		case 'REMOVE_SLOT':
 			return {
 				...state,

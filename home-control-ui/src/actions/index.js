@@ -5,12 +5,18 @@ export const PageEnum = {
 
 export const ThermoModeEnum = {
 	AUTO: 'Automatique',
-	FORCED: 'Forcé'
+	FORCED: 'Forcé',
+	OFF: 'Eteindre'
 }
 
 export const setPage = (page) => ({
 	type: "SET_PAGE",
 	page
+});
+
+export const setMessage = (message) => ({
+	type: "SET_MESSAGE",
+	message
 });
 
 export const setMode = (mode) => ({
@@ -30,6 +36,11 @@ export const setNormal = (normal) => ({
 
 export const addSlot = (slot) => ({
 	type: "ADD_SLOT",
+	slot
+});
+
+export const updateSlot = (slot) => ({
+	type: "UPDATE_SLOT",
 	slot
 });
 
