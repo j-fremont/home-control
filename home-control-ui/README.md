@@ -23,11 +23,11 @@ docker build -t home-control-ui .
 Run de l'image Docker.
 
 ```
-docker run -d -p 3004:3000 \
+docker run -d -p 3001:3000 \
 --restart=always \
 --name=home-ui \
 -e NODEJS_HOST='192.168.1.10' \
--e NODEJS_PORT='9002' \
+-e NODEJS_PORT='9001' \
 home-control-ui
 ```
 

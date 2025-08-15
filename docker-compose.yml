@@ -13,6 +13,19 @@ services:
       - INFLUXDB_DB=homedb
     volumes:
       - /srv/docker/influxdb:/var/lib/influxdb
+  rpi-mosquitto:
+    image: arm32v6/eclipse-mosquitto:latest
+    restart: always
+    networks:
+      - control-net
+    ports:
+      - '1883:1883'
+    environment:
+      - INFLUXDB_DB=homedb
+    volumes:
+      - /srv/docker/mosquitto/config:/mosquitto/config
+      - /srv/docker/mosquitto/data:/mosquitto/data
+      - /srv/docker/mosquitto/log:/mosquitto/log
   rpi-grafana:
     image: grafana/grafana
     restart: always
@@ -37,7 +50,9 @@ services:
       - rpi-influxdb
     environment:
       - NODEJS_HOST=192.168.1.10
+      - NODEJS_PORT=9000
       - NODEMCU_HOST=192.168.1.11
+      - NODEMCU_PORT=8000
   home-ui:
     image: home-control-ui:latest
     restart: always
