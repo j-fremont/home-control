@@ -2,7 +2,7 @@ import React from 'react';
 
 import MyThermoForced from '../containers/MyThermoForced'
 
-const MyContainerThermoForced = ({ forced, setForced }) => {
+const MyContainerThermoForced = () => {
 
 	return (
 		<MyThermoForced />

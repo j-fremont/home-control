@@ -3,22 +3,22 @@ import config from '../config'
 const thermo = (state = [], action) => {
 
 	switch (action.type) {
-		case 'SET_MODE':
+		case 'SET_THERMO_MODE':
 			return {
 				...state,
 				mode: action.mode
 			}
-		case 'SET_FORCED':
+		case 'SET_THERMO_FORCED':
 			return {
 				...state,
 				forced: action.forced
 			}
-		case 'SET_NORMAL':
+		case 'SET_THERMO_NORMAL':
 			return {
 				...state,
 				normal: action.normal
 			}
-		case 'ADD_SLOT':
+		case 'ADD_THERMO_SLOT':
 			if (state.slots.length < config.maxSlots) {
 				return {
 					...state,
@@ -27,12 +27,12 @@ const thermo = (state = [], action) => {
 			} else {
 				return state;
 			}
-		case 'UPDATE_SLOT':
+		case 'UPDATE_THERMO_SLOT':
 			return {
 				...state,
 				slots: state.slots.map(s => s.id===action.slot.id ? action.slot : s)
 			}
-		case 'REMOVE_SLOT':
+		case 'REMOVE_THERMO_SLOT':
 			return {
 				...state,
 				slots: state.slots.filter(s => s.id!==action.id)

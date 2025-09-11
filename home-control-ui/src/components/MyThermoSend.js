@@ -6,7 +6,6 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
 
 import { ThermoModeEnum } from '../actions'
 
@@ -14,7 +13,7 @@ import axios from "axios";
 
 const config = require('../config');
 
-const MyThermoSend = ({ thermo, message, setMode, setMessage }) => {
+const MyThermoSend = ({ thermo, setMode, setMessage }) => {
 
 	const changeMode = (event) => {
 		const newMode = event.target.value;
@@ -55,10 +54,6 @@ const MyThermoSend = ({ thermo, message, setMode, setMessage }) => {
 		return thermo.slots.every(s => regex.test(s.start) && regex.test(s.end));
 	}
 
-	const closeMessage = () => {
-		setMessage(undefined);
-	}
-
 	return (
 		<Stack spacing={2}>
 			<FormControl fullWidth>
@@ -75,9 +70,6 @@ const MyThermoSend = ({ thermo, message, setMode, setMessage }) => {
 				</Select>
 			</FormControl>
 			<Button variant="outlined" onClick={send}>Envoyer</Button>
-			{message &&
-				<Alert severity={message.severity} onClose={closeMessage}>{message.text}</Alert>
-			}
 		</Stack>
 	)
 }

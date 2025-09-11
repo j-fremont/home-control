@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 
 import MyThermoSend from '../containers/MyThermoSend'
 
-const MyContainerThermoSend = ({ container }) => {
+const MyContainerThermoSend = () => {
 
 	return (
 		<Container fixed>

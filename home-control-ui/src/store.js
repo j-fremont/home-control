@@ -13,6 +13,9 @@ const initialState = {
 		normal: "20",
 		forced: "20",
 		slots: []
+	},
+	linky: {
+		base: []
 	}
 }
 

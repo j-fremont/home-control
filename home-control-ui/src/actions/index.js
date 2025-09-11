@@ -1,5 +1,6 @@
 export const PageEnum = {
 	THERMOSTAT: 'THERMOSTAT',
+	LINKY: 'LINKY',
 	INFORMATION: 'INFORMATION'
 }
 
@@ -20,31 +21,36 @@ export const setMessage = (message) => ({
 });
 
 export const setMode = (mode) => ({
-	type: "SET_MODE",
+	type: "SET_THERMO_MODE",
 	mode
 });
 
 export const setForced = (forced) => ({
-	type: "SET_FORCED",
+	type: "SET_THERMO_FORCED",
 	forced
 });
 
 export const setNormal = (normal) => ({
-	type: "SET_NORMAL",
+	type: "SET_THERMO_NORMAL",
 	normal
 });
 
 export const addSlot = (slot) => ({
-	type: "ADD_SLOT",
+	type: "ADD_THERMO_SLOT",
 	slot
 });
 
 export const updateSlot = (slot) => ({
-	type: "UPDATE_SLOT",
+	type: "UPDATE_THERMO_SLOT",
 	slot
 });
 
 export const removeSlot = (id) => ({
-	type: "REMOVE_SLOT",
+	type: "REMOVE_THERMO_SLOT",
 	id
+});
+
+export const setLinkyBase = (base) => ({
+	type: "SET_LINKY_BASE",
+	base
 });
