@@ -2,7 +2,9 @@ import { connect } from 'react-redux'
 import MyLinkyVisual from '../components/MyLinkyVisual'
 
 const mapStateToProps = state => ({
-	base: state.linky.base
+	measurement: state.linky.measurement,
+	base: state.linky.base,
+	iinst: state.linky.iinst
 })
 
 const mapDispatchToProps = dispatch => ({

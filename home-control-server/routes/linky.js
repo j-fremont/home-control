@@ -5,7 +5,7 @@ const router = express.Router();
 const axios = require('axios');
 const config = require('../config');
 
-router.post('/base', (req, res) => {
+router.post('/query', (req, res) => {
 	
 	axios({
 		method: 'post',
@@ -16,7 +16,7 @@ router.post('/base', (req, res) => {
 		data: {
 			q: req.body.query
 		}
-		
+
 	}).then((response) => {
 		
 		res.send(response.data);

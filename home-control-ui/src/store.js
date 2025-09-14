@@ -2,20 +2,22 @@
 import { createStore } from "redux"
 import reducer from "./reducers"
 
-import { PageEnum } from './actions'
+import { PageEnum, ThermoModeEnum, LinkyMeasEnum } from './actions'
 
 const initialState = {
 	control: {
 		page: PageEnum.THERMOSTAT
 	},
 	thermo: {
-		mode: 'Automatique',
+		mode: ThermoModeEnum.AUTO,
 		normal: "20",
 		forced: "20",
 		slots: []
 	},
 	linky: {
-		base: []
+		measurement: LinkyMeasEnum.BASE,
+		base: [],
+		iinst: []
 	}
 }
 

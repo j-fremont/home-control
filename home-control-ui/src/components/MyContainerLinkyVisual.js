@@ -7,7 +7,7 @@ import MyLinkyVisual from '../containers/MyLinkyVisual'
 const MyContainerLinkyVisual = () => {
 
 	return (
-		<Container fixed>
+		<Container maxWidth={false}>
 			<MyLinkyVisual />
 		</Container>
 	)

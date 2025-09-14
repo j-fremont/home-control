@@ -10,6 +10,11 @@ export const ThermoModeEnum = {
 	OFF: 'Eteindre'
 }
 
+export const LinkyMeasEnum = {
+	BASE: 'Index base',
+	IINST: 'Intensité instantanée'
+}
+
 export const setPage = (page) => ({
 	type: "SET_PAGE",
 	page
@@ -50,7 +55,17 @@ export const removeSlot = (id) => ({
 	id
 });
 
+export const setLinkyMeasurement = (measurement) => ({
+	type: "SET_LINKY_MEASUREMENT",
+	measurement
+});
+
 export const setLinkyBase = (base) => ({
 	type: "SET_LINKY_BASE",
 	base
+});
+
+export const setLinkyIinst = (iinst) => ({
+	type: "SET_LINKY_IINST",
+	iinst
 });
