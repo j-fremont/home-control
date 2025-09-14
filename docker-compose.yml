@@ -51,6 +51,8 @@ services:
     environment:
       - NODEJS_HOST=192.168.1.10
       - NODEJS_PORT=9000
+      - INFLUXDB_HOST=192.168.1.10
+      - INFLUXDB_PORT=8086
       - NODEMCU_HOST=192.168.1.11
       - NODEMCU_PORT=8000
   home-ui:
