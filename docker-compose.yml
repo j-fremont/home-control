@@ -67,6 +67,15 @@ services:
     environment:
       - NODEJS_HOST=192.168.1.10
       - NODEJS_PORT=9001
+  sensor-server:
+    image: sensor-server:latest
+    restart: always
+    networks:
+      - control-net
+    environment:
+      - INFLUXDB_HOST=192.168.1.10
+      - MOSQUITTO_HOST=192.168.1.10
+      - MOSQUITTO_PORT=1883
 
 volumes:
   grafana-storage:
