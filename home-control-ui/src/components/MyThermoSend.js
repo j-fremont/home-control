@@ -11,7 +11,7 @@ import { ThermoModeEnum } from '../actions'
 
 import axios from "axios";
 
-const config = require('../config');
+import { config } from '../config'
 
 const MyThermoSend = ({ thermo, setMode, setMessage }) => {
 

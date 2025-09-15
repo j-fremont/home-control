@@ -13,9 +13,9 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { LinkyMeasEnum } from '../actions'
 
-import axios from "axios";
+import { config } from '../config'
 
-const config = require('../config');
+import axios from "axios";
 
 const MyLinkySend = ({ measurement, setLinkyMeasurement, setLinkyBase, setLinkyIinst, setMessage }) => {
 
