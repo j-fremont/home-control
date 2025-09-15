@@ -1,8 +1,11 @@
-var config = module.exports = {};
+const envSettings = window;
 
-config.server = {
-  host: 'localhost',
-  port: '3000'
-};
+export const config = {
+  server: {
+    host: envSettings.NODEJS_HOST || 'localhost',
+    port: envSettings.NODEJS_PORT || '3000'
+  },
+  maxSlots: 4
+}
 
-config.maxSlots = 4;
+export default config

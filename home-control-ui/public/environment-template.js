@@ -1,0 +1,2 @@
+window.NODEJS_HOST = "${NODEJS_HOST}";
+window.NODEJS_PORT = "${NODEJS_PORT}";
