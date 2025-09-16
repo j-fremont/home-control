@@ -1,6 +1,7 @@
 export const PageEnum = {
 	THERMOSTAT: 'THERMOSTAT',
 	LINKY: 'LINKY',
+	WEATHER: 'WEATHER',
 	INFORMATION: 'INFORMATION'
 }
 
@@ -13,6 +14,13 @@ export const ThermoModeEnum = {
 export const LinkyMeasEnum = {
 	BASE: 'Index base',
 	IINST: 'Intensité instantanée'
+}
+
+export const WeatherMeasEnum = {
+	TEMPERATURE: 'Température',
+	HUMIDITY: 'Humidité',
+	LUMINOSITY: 'Luminosité',
+	PRESSURE: 'Pression'
 }
 
 export const setPage = (page) => ({
@@ -68,4 +76,29 @@ export const setLinkyBase = (base) => ({
 export const setLinkyIinst = (iinst) => ({
 	type: "SET_LINKY_IINST",
 	iinst
+});
+
+export const setWeatherMeasurement = (measurement) => ({
+	type: "SET_WEATHER_MEASUREMENT",
+	measurement
+});
+
+export const setWeatherTemperature = (temperature) => ({
+	type: "SET_WEATHER_TEMPERATURE",
+	temperature
+});
+
+export const setWeatherHumidity = (humidity) => ({
+	type: "SET_WEATHER_HUMIDITY",
+	humidity
+});
+
+export const setWeatherLuminosity = (luminosity) => ({
+	type: "SET_WEATHER_LUMINOSITY",
+	luminosity
+});
+
+export const setWeatherPressure = (pressure) => ({
+	type: "SET_WEATHER_PRESSURE",
+	pressure
 });

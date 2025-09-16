@@ -2,7 +2,7 @@
 import { createStore } from "redux"
 import reducer from "./reducers"
 
-import { PageEnum, ThermoModeEnum, LinkyMeasEnum } from './actions'
+import { PageEnum, ThermoModeEnum, LinkyMeasEnum, WeatherMeasEnum } from './actions'
 
 const initialState = {
 	control: {
@@ -18,6 +18,13 @@ const initialState = {
 		measurement: LinkyMeasEnum.BASE,
 		base: [],
 		iinst: []
+	},
+	weather: {
+		measurement: WeatherMeasEnum.TEMPERATURE,
+		temperature: [],
+		humidity: [],
+		luminosity: [],
+		pressure: []
 	}
 }
 

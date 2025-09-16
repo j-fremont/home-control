@@ -10,6 +10,7 @@ const config = require('./config');
 
 var thermoRouter = require('./routes/thermo');
 var linkyRouter = require('./routes/linky');
+var weatherRouter = require('./routes/weather');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,6 +19,7 @@ app.use(cors());
 
 app.use('/thermo', thermoRouter);
 app.use('/linky', linkyRouter);
+app.use('/weather', weatherRouter);
 
 http.listen(config.server.port, () => {
   console.log('listening on *:' + config.server.port);

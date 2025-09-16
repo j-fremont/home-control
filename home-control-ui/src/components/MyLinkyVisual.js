@@ -9,16 +9,16 @@ import { LinkyMeasEnum } from '../actions'
 
 const MyLinkyVisual = ({ measurement, base, iinst }) => {
 
-	const [values, setValues] = useState([]);
-	const [xAxis, setXAxis] = useState([]);
-	const [series, setSeries] = useState([]);
+	const [valuesBase, setValuesBase] = useState([]);
+	const [xAxisBase, setXAxisBase] = useState([]);
+	const [seriesBase, setSeriesBase] = useState([]);
 	const [valuesIinst, setValuesIinst] = useState([]);
 	const [xAxisIinst, setXAxisIinst] = useState([]);
 	const [seriesIinst, setSeriesIinst] = useState([]);
 
 	useEffect(() => {
 
-		setValues(base.reduce((acc, val, idx) => {
+		setValuesBase(base.reduce((acc, val, idx) => {
 
 			if (idx) {
 
@@ -55,15 +55,15 @@ const MyLinkyVisual = ({ measurement, base, iinst }) => {
 
 	useEffect(() => {
 
-		setXAxis([{
-			data: values.map(v => v.date)
+		setXAxisBase([{
+			data: valuesBase.map(v => v.date)
 		}]);
 
-		setSeries([{
-			data: values.map(v => v.value)
+		setSeriesBase([{
+			data: valuesBase.map(v => v.value)
 		}]);
 
-	}, [values]);
+	}, [valuesBase]);
 
 	useEffect(() => {
 
@@ -85,8 +85,8 @@ const MyLinkyVisual = ({ measurement, base, iinst }) => {
 		<Stack spacing={2}>
 			{measurement===LinkyMeasEnum.BASE ?
 				<BarChart
-					xAxis={xAxis}
-					series={series}
+					xAxis={xAxisBase}
+					series={seriesBase}
 					height={600} />
 			:
 				<LineChart
