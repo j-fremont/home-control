@@ -1,7 +1,5 @@
 #!/bin/sh
 
-#envsubst < src/config-model.js > src/config.js
-
-#npm start
+envsubst < build/environment-template.js > build/environment.js
 
 node server/index.js
