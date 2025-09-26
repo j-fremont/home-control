@@ -16,6 +16,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: |
-        docker build ./home-control-ui --file home-control-ui/Dockerfile --tag home-control-ui:$(date +%s)
-        docker tag home-control-ui:$(date +%s) 192.168.1.20:8082/home-control-ui:$(date +%s)
-        docker push 192.168.1.20:8082/home-control-ui:$(date +%s)
+        docker build ./home-control-ui --file home-control-ui/Dockerfile --tag home-control-ui:1.0
+        docker tag home-control-ui:1.0 192.168.1.20:8082/home-control-ui:1.0
+        docker push 192.168.1.20:8082/home-control-ui:1.0
