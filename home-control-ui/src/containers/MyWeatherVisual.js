@@ -6,7 +6,8 @@ const mapStateToProps = state => ({
 	temperature: state.weather.temperature,
 	humidity: state.weather.humidity,
 	luminosity: state.weather.luminosity,
-	pressure: state.weather.pressure
+	pressure: state.weather.pressure,
+	current: state.weather.current
 })
 
 const mapDispatchToProps = dispatch => ({

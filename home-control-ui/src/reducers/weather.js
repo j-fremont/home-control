@@ -27,6 +27,12 @@ const linky = (state = [], action) => {
 				...state,
 				pressure: action.pressure
 			}
+		case 'SET_WEATHER_CURRENT':
+			return {
+				...state,
+				current: action.current
+			}
+
 		default:
 			return state
 	}

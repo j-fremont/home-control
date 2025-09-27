@@ -102,3 +102,8 @@ export const setWeatherPressure = (pressure) => ({
 	type: "SET_WEATHER_PRESSURE",
 	pressure
 });
+
+export const setWeatherCurrent = (current) => ({
+	type: "SET_WEATHER_CURRENT",
+	current
+});

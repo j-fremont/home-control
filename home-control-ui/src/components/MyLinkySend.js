@@ -51,7 +51,7 @@ const MyLinkySend = ({ measurement, setLinkyMeasurement, setLinkyBase, setLinkyI
 		let query = "";
 
 		if (measurement===LinkyMeasEnum.BASE) {
-			query = "select base from elec" + queryTime;
+			query = "select base from elec" + queryTime + " limit " + config.maxBars;
 		} else {
 			query = "select round(mean(iinst)*10)/10 from elec" + queryTime + " group by time(1h)"
 

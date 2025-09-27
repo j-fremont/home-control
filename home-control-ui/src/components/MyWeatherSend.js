@@ -14,10 +14,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { WeatherMeasEnum } from '../actions'
 
 import { config } from '../config'
+import { getSensor } from '../helper';
 
 import axios from "axios";
 
-const MyWeatherSend = ({ measurement, setWeatherMeasurement, setWeatherTemperature, setWeatherHumidity, setWeatherLuminosity, setWeatherPressure, setMessage }) => {
+const MyWeatherSend = ({ measurement, current, setWeatherMeasurement, setWeatherTemperature, setWeatherHumidity, setWeatherLuminosity, setWeatherPressure, setWeatherCurrent, setMessage }) => {
 
 	const [start, setStart] = useState();
 	const [end, setEnd] = useState();
@@ -39,33 +40,124 @@ const MyWeatherSend = ({ measurement, setWeatherMeasurement, setWeatherTemperatu
 			return;
 		}
 
-		const query = "select sensor,round(m*10)/10 from (select mean(temperature) as m from weather group by time(1h), sensor)"
+		const sensor = getSensor(measurement);
+
+		const queryLast = "select last(" + sensor + ") from weather group by sensor";
 
 		axios({
 			method: 'post',
-			url: 'http://' + config.server.host + ':' + config.server.port + '/weather/query',
+			url: 'http://' + config.server.host + ':' + config.server.port + '/weather/last',
 			headers: {
 				'Content-type': 'application/json'
 			},
 			data: {
-				query
+				query: queryLast
 			}
 		})
 		.then((response) => {
 
-			if (response.data.results && response.data.results[0] && response.data.results[0].series && response.data.results[0].series[0]) {
+			const checkAvailableData = new Promise((resolve, reject) => {
 
-				setWeatherTemperature(response.data.results[0].series[0].values);
-				
-			} else {
+				if (response.data.results[0].series) {
 
-				setWeatherTemperature([]);
-			}
+					resolve(response.data.results[0].series);
 
-			setMessage({
-				severity: 'success',
-				text: 'Données chargées !'
+				} else {
+					
+					reject();
+				}
+
 			});
+			
+			checkAvailableData.then((series) => {
+
+				const newLast = series.reduce((acc, val) => {
+
+					acc = {
+						...acc,
+						[val.tags.sensor]: val.values[0][1]
+					}
+
+					return acc;
+
+				}, {});
+
+				setWeatherCurrent({
+					...current,
+					[sensor]: newLast
+				})
+
+				let queryTime = "";
+
+				if (start && end) {
+
+					const dateStart = new Date(start.$d);
+					const dateEnd = new Date(end.$d);
+					queryTime = " where time > '" + dateStart.toISOString().split('T')[0] + "' and time < '" + dateEnd.toISOString().split('T')[0] + "'";
+				}
+
+				const query = "select sensor,round(m*10)/10 from (select mean(" + sensor + ") as m from weather" + queryTime + " group by time(1h), sensor)";
+
+				axios({
+					method: 'post',
+					url: 'http://' + config.server.host + ':' + config.server.port + '/weather/query',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					data: {
+						query
+					}
+				})
+				.then((response) => {
+
+					if (response.data.results && response.data.results[0] && response.data.results[0].series && response.data.results[0].series[0]) {
+
+						switch(measurement) {
+							case WeatherMeasEnum.TEMPERATURE:
+								setWeatherTemperature(response.data.results[0].series[0].values);
+								break;
+							case WeatherMeasEnum.HUMIDITY:
+								setWeatherHumidity(response.data.results[0].series[0].values);
+								break;
+							case WeatherMeasEnum.LUMINOSITY:
+								setWeatherLuminosity(response.data.results[0].series[0].values);
+								break;
+							case WeatherMeasEnum.PRESSURE:
+								setWeatherPressure(response.data.results[0].series[0].values);
+								break;
+							default:
+						}
+						
+					} else {
+
+						setWeatherTemperature([]);
+						setWeatherHumidity([]);
+						setWeatherLuminosity([]);
+						setWeatherPressure([]);
+					}
+
+					setMessage({
+						severity: 'success',
+						text: 'Données chargées !'
+					});
+				})
+				.catch(() => {
+
+					setMessage({
+						severity: 'error',
+						text: 'Erreur lors du chargement des données !'
+					});
+				});
+
+			})
+			.catch(() => {
+
+				setMessage({
+					severity: 'warning',
+					text: 'Pas de données disponibles !'
+				});
+			});
+
 		})
 		.catch(() => {
 

@@ -24,7 +24,13 @@ const initialState = {
 		temperature: [],
 		humidity: [],
 		luminosity: [],
-		pressure: []
+		pressure: [],
+		current: {
+			temperature: {},
+			humidity: {},
+			luminosity: {},
+			pressure: {}
+		}
 	}
 }
 
