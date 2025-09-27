@@ -42,16 +42,16 @@ const MyWeatherSend = ({ measurement, current, setWeatherMeasurement, setWeather
 
 		const sensor = getSensor(measurement);
 
-		const queryLast = "select last(" + sensor + ") from weather group by sensor";
+		const query = "select last(" + sensor + ") from weather group by sensor";
 
 		axios({
 			method: 'post',
-			url: 'http://' + config.server.host + ':' + config.server.port + '/weather/last',
+			url: 'http://' + config.server.host + ':' + config.server.port + '/weather/query',
 			headers: {
 				'Content-type': 'application/json'
 			},
 			data: {
-				query: queryLast
+				query
 			}
 		})
 		.then((response) => {
