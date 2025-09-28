@@ -3,6 +3,10 @@ import config from '../config'
 const thermo = (state = [], action) => {
 
 	switch (action.type) {
+		case 'SET_THERMO':
+			return {
+				...action.thermo
+			}
 		case 'SET_THERMO_MODE':
 			return {
 				...state,

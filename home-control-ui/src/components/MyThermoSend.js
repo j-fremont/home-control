@@ -40,7 +40,7 @@ const MyThermoSend = ({ thermo, setMode, setMessage }) => {
 				data: thermo
 			})
 			.then((response) => {
-				console.log(response.data);
+
 				setMessage({
 					severity: 'success',
 					text: 'Message envoyé !'

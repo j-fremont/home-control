@@ -46,7 +46,7 @@ const MyWeatherSend = ({ measurement, current, setWeatherMeasurement, setWeather
 
 		axios({
 			method: 'post',
-			url: 'http://' + config.server.host + ':' + config.server.port + '/weather/query',
+			url: 'http://' + config.server.host + ':' + config.server.port + '/weather/last',
 			headers: {
 				'Content-type': 'application/json'
 			},

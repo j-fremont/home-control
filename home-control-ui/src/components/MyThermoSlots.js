@@ -6,11 +6,10 @@ import MyThermoSlot from '../containers/MyThermoSlot'
 
 const MyThermoSlots = ({ slots }) => {
 
-
 	return (
 		<Grid container spacing={2}>
-			{slots.map(s => (
-				<Grid size={2}>
+			{slots.map((s, i) => (
+				<Grid key={i} size={2}>
 					<MyThermoSlot slot={s} />
 				</Grid>
 			))}

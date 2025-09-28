@@ -5,15 +5,27 @@ import Grid from '@mui/material/Grid';
 import MyAppBar from '../containers/MyAppBar'
 import MyContainerMessage from './MyContainerMessage'
 
-const MyApp = ({ container }) => {
+import { config } from '../config'
 
-	const initialize = () => {
+import axios from "axios";
 
-	}
+const MyApp = ({ container, setThermo }) => {
 
 	useEffect(() => {
-		initialize();
-	}, []);
+
+		axios({
+				method: 'get',
+				url: 'http://' + config.server.host + ':' + config.server.port + '/thermo',
+				headers: {
+					'Content-type': 'application/json'
+				}
+			})
+			.then((response) => {
+
+				setThermo(response.data);
+			});
+
+	}, [setThermo]);
 
 	return (
 		<Grid container spacing={4}>

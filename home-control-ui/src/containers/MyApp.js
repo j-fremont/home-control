@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { PageEnum } from '../actions'
+import { PageEnum, setThermo } from '../actions'
 import MyApp from '../components/MyApp'
 import MyContainerThermo from '../components/MyContainerThermo'
 import MyContainerLinky from '../components/MyContainerLinky'
@@ -28,7 +28,11 @@ const mapStateToProps = state => ({
 	container: getContainer(state.control.page),
 })
 
+const mapDispatchToProps = dispatch => ({
+	setThermo: thermo => dispatch(setThermo(thermo))
+})
+
 export default connect(
 	mapStateToProps,
-	undefined
+	mapDispatchToProps
 )(MyApp)

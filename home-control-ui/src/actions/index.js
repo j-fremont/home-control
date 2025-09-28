@@ -33,6 +33,11 @@ export const setMessage = (message) => ({
 	message
 });
 
+export const setThermo = (thermo) => ({
+	type: "SET_THERMO",
+	thermo
+});
+
 export const setMode = (mode) => ({
 	type: "SET_THERMO_MODE",
 	mode
