@@ -49,7 +49,7 @@ services:
     depends_on:
       - rpi-influxdb
     environment:
-      - NODEJS_HOST=192.168.1.10
+      - NODEJS_HOST=192.168.1.22
       - NODEJS_PORT=9000
       - INFLUXDB_HOST=192.168.1.10
       - INFLUXDB_PORT=8086
@@ -65,7 +65,7 @@ services:
     depends_on:
       - home-server
     environment:
-      - NODEJS_HOST=192.168.1.10
+      - NODEJS_HOST=192.168.1.22
       - NODEJS_PORT=9001
   sensor-server:
     image: sensor-server:latest
