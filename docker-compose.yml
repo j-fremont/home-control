@@ -55,6 +55,8 @@ services:
       - INFLUXDB_PORT=8086
       - NODEMCU_HOST=192.168.1.11
       - NODEMCU_PORT=8000
+    volumes:
+      - /srv/docker/home-control-server:/usr/src/app/data
   home-ui:
     image: home-control-ui:latest
     restart: always
