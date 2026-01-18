@@ -22,7 +22,8 @@ const MyLinkyVisual = ({ measurement, base, iinst }) => {
 
 			if (idx) {
 
-				const date = base[idx-1][0].split('T')[0];
+				//const date = base[idx-1][0].split('T')[0];
+				const date = base[idx-1][0];
 				const value = val[1] - base[idx-1][1];
 
 				acc = [...acc, {

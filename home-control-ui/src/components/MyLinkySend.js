@@ -72,7 +72,41 @@ const MyLinkySend = ({ measurement, setLinkyMeasurement, setLinkyBase, setLinkyI
 			if (response.data.results && response.data.results[0] && response.data.results[0].series && response.data.results[0].series[0]) {
 
 				if (measurement===LinkyMeasEnum.BASE) {
-					setLinkyBase(response.data.results[0].series[0].values);
+
+					console.log(response.data.results[0].series[0].values)
+
+					const values = response.data.results[0].series[0].values.map(v => ([
+						v[0].split('T')[0],
+						v[1]
+					]));
+
+					console.log(values)
+
+					const valueStart = values[0];
+					const valueEnd = values[values.length-1];
+
+					console.log(valueStart)
+					console.log(valueEnd)
+
+					const daysArray = [];
+
+					for (const d=new Date(valueStart[0]); d <= new Date(valueEnd[0]); d.setDate(d.getDate()+1)) {
+						daysArray.push(new Date(d).toISOString().split('T')[0]);
+					}
+
+					console.log(daysArray)
+
+					console.log(daysArray.map(date => {
+						
+						const valueWithDate = values.find(v => v[0]===date);
+
+						return valueWithDate || [
+							date,
+							 0
+						]
+
+					}));
+
 				} else {
 					setLinkyIinst(response.data.results[0].series[0].values);
 				}
