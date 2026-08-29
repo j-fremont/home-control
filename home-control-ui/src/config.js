@@ -8,9 +8,10 @@ export const config = {
   maxSlots: 4,
   maxBars: 30,
   colors: {
-    bathroom: '#193CB8',
-    inside: '#EC253F',
-    outside: '#5EA529'
+    bathroom: '#4682B4', // SteelBlue
+    inside: '#CD5C5C', // IndianRed
+    outside: '#6B8E23', // OliveDrab
+    floor: '#BA55D3' // MediumOrchid
   }
 }
 

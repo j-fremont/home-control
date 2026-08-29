@@ -60,6 +60,10 @@ const MyWeatherVisual = ({ measurement, temperature, humidity, luminosity, press
 			data: values.map(v => v.outside),
 			showMark: false,
 			color: config.colors.outside
+		},{
+			data: values.map(v => v.floor),
+			showMark: false,
+			color: config.colors.floor
 		}]);
 
 	}, [values]);
@@ -106,6 +110,9 @@ const MyWeatherVisual = ({ measurement, temperature, humidity, luminosity, press
 				}
 				{current[sensor] && current[sensor].outside!==undefined &&
 					<MyGauge value={current[sensor].outside} title={"Exterieur"} color={config.colors.outside} />
+				}
+				{current[sensor] && current[sensor].floor!==undefined &&
+					<MyGauge value={current[sensor].floor} title={"Etage"} color={config.colors.floor} />
 				}
 			</Stack>
 			<LineChart
